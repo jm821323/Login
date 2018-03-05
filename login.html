@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
     div {
       width: 100%;
       text-align: center;
-      margin-top: 50px;
+      margin-top: 100px;
     }
   </style>
 </head>
@@ -36,9 +37,9 @@
           type: 'post',
           success: function (data) {
             if (data.code === 200) {
-              window.location.href = './index.html?' + $('form').serialize()
+              window.location.href = './index.html'
             } else {
-              alert('登录失败！')
+              alert('用户名或密码错误')
             }
           }
         })
@@ -64,4 +65,5 @@
     })
   </script>
 </body>
+
 </html>

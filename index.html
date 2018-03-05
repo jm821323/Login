@@ -20,26 +20,23 @@
       <th>密码</th>
     </thead>
     <tbody>
-      <tr>
-        <td>12</td>
-        <td>12</td>
-      </tr>
     </tbody>
   </table>
+  <script src="./jquery.js"></script>
   <script>
-    window.onload = function() {
-      var href = window.location.href
-      if(href.indexOf('?')== -1 || href.indexOf('=')== -1 || href.indexOf('&')== -1){
-        window.location.href = './login.html'
-      }else{
-        var user = {}
-        href.split('?')[1].split("&").forEach(item => {
-          user[item.split('=')[0]] = item.split('=')[1]
-        })
-        document.getElementsByTagName('td')[0].innerHTML = user.name
-        document.getElementsByTagName('td')[1].innerHTML = user.password
-      }
-    }
+    $(function () {
+      $.get({
+        url: 'http://interview.sinicnet.cn/getUser',
+        success: function(data) {
+          var html = '';
+          data.data.forEach(item => {
+            html += '<tr><td>'+ item.name +'</td><td>'+ item.password +'</td></tr>';
+          })
+          $('tbody').html(html)
+        }
+      })
+    })
+    //
   </script>
 </body>
 
