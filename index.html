@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    table {
+      margin: 50px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <table border="1" width="500" height="50">
+    <thead>
+      <th>用户名</th>
+      <th>密码</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    window.onload = function() {
+      var href = window.location.href
+      if(href.indexOf('?')== -1 || href.indexOf('=')== -1 || href.indexOf('&')== -1){
+        window.location.href = './login.html'
+      }else{
+        var user = {}
+        href.split('?')[1].split("&").forEach(item => {
+          user[item.split('=')[0]] = item.split('=')[1]
+        })
+        document.getElementsByTagName('td')[0].innerHTML = user.name
+        document.getElementsByTagName('td')[1].innerHTML = user.password
+      }
+    }
+  </script>
+</body>
+
+</html>

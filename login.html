@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100%;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <form>
+      用户名:
+      <input type="text" name="name">
+      <br /> 密码:
+      <input type="password" name="password">
+      <br />
+      <input type="submit" value="登录" class="login">
+      <input type="submit" value="注册" class="register">
+    </form>
+  </div>
+  <script src="./jquery.js"></script>
+  <script>
+    $(function () {
+      $('.login').on('click', function () {
+        $.ajax({
+          url: 'http://interview.sinicnet.cn/login',
+          data: $('form').serialize(),
+          type: 'post',
+          success: function (data) {
+            if (data.code === 200) {
+              window.location.href = './index.html?' + $('form').serialize()
+            } else {
+              alert('登录失败！')
+            }
+          }
+        })
+        return false
+      })
+    })
+    $('.register').on('click', function () {
+      $.ajax({
+        url: 'http://interview.sinicnet.cn/signup',
+        data: $('form').serialize(),
+        type: 'post',
+        success: function (data) {
+          if (data.code === 200) {
+            alert('注册成功')
+          } else if (data.code === 1) {
+            alert('用户名已存在')
+          } else {
+            alert('注册失败')
+          }
+        }
+      })
+      return false
+    })
+  </script>
+</body>
+</html>
